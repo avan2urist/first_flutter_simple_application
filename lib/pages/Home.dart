@@ -18,34 +18,37 @@ class _HomeState extends State<Home> {
   }
 
 void _menuOpen() {
-  Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Menu'),
-      ),
-      body: Row(
-         mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Column(
-            mainAxisAlignment: MainAxisAlignment.start,
+  Navigator.of(context).push(MaterialPageRoute(
+    builder: (context) {
+      return Scaffold(
+        appBar: AppBar(
+          title: Text('Menu'),
+        ),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text('Own simple menu'),
-              Padding(
-                padding: EdgeInsets.only(bottom: 25),
-                child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                    Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
-                  },
-                  child: Text('Main menu'),
+              Text('Custom Menu', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+              SizedBox(height: 20),
+              ElevatedButton.icon(
+                onPressed: () {
+                  Navigator.pop(context);
+                  Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
+                },
+                icon: Icon(Icons.arrow_back),
+                label: Text('Return to Main Menu'),
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.blue,
+                  onPrimary: Colors.white,
+                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                 ),
               ),
             ],
           ),
-        ],
-      ),
-    );
-  }));
+        ),
+      );
+    },
+  ));
 }
 
   Widget build(BuildContext context) {
